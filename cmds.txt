@@ -1,0 +1,7 @@
+echo "00"> ser
+touch db  db.attr
+openssl req -x509 -new -keyout rootCA.key -out rootCA.crt -config root-ca.conf -days 365 -nodes
+openssl req -new -keyout zzz.key -out zzz.csr -nodes
+openssl ca -config root-ca.conf -in zzz.csr -out zzz.crt
+openssl pkcs12 -export -out zzz.pfx -inkey zzz.key -in zzz.crt
+
